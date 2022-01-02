@@ -5,6 +5,8 @@
 body {
   font-family: "Black Ops One", cursive;
   text-align: center;
+  background-color: black;
+  color: white;
 }
 
 .speed {
