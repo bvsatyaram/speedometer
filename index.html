@@ -25,30 +25,59 @@
         text-align: center;
       }
 
-      h1 {
+      .speed {
         font-size: 20vw;
         margin: 10vh 0 0;
       }
 
-      h2 {
+      .units {
         font-size: 8vw;
         margin: 0;
+      }
+
+      .debug {
+        font-size: 0.6rem;
+        position: absolute;
+        right: 1rem;
+        bottom: 1rem;
       }
     </style>
   </head>
   <body>
     <div>
-      <h1></h1>
-      <h2>kmph</h2>
+      <h1 class="speed">0</h1>
+      <h2 class="units">kmph</h2>
+      <h3 class="updated">
+        Last updated
+        <span>0</span>
+        seconds ago
+      </h3>
+      <div class="debug"></div>
     </div>
 
     <script>
+      let lastUpdatedAt = new Date();
+
       document.addEventListener("DOMContentLoaded", function () {
         navigator.geolocation.watchPosition((position) => {
-          document.querySelector("h1").innerHTML = Math.round(
-            position.coords.speed
+          document.querySelector(".speed").innerHTML = Math.round(
+            position.coords.speed * 3.6
+          );
+
+          lastUpdatedAt = new Date();
+
+          document.querySelector(".debug").innerHTML = JSON.stringify(
+            position.coords
           );
         });
+
+        const updateLastUpdatedAt = () => {
+          const timeAgo = Math.round((new Date() - lastUpdatedAt) / 1000);
+          document.querySelector(".updated span").innerHTML = timeAgo;
+          window.requestAnimationFrame(updateLastUpdatedAt);
+        };
+
+        window.requestAnimationFrame(updateLastUpdatedAt);
       });
     </script>
   </body>
