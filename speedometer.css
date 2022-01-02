@@ -1,0 +1,33 @@
+.hidden {
+  display: none;
+}
+
+body {
+  font-family: "Black Ops One", cursive;
+  text-align: center;
+}
+
+.speed {
+  font-size: 20vw;
+  margin: 10vh 0 0;
+}
+
+.units {
+  font-size: 8vw;
+  margin: 0;
+}
+
+.debug {
+  font-size: 0.6rem;
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+}
+
+.start {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+}
